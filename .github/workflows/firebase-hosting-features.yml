@@ -7,10 +7,15 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - features/*
 jobs:
-  test_and_build:
+  test:
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - run: npm i react-scripts
+        - run: npm run test
+     
+ build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm i react-scripts
-      - run: npm run test
       - run: npm ci && npm run build
